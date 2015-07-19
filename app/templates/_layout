@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><%= appName %></title>
+</head>
+<body>
+	<% if (templateOption === 'handlebars') { %>
+	{{{body}}}
+	<% } else if (templateOption === 'dust') { %>
+	{+ content}
+	{/ content}
+	<% } %>
+</body>
+</html>

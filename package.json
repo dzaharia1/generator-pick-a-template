@@ -1,0 +1,22 @@
+{
+  "name": "generator-nodeapp",
+  "version": "1.0.0",
+  "description": "Scaffold a basic prototype with either handlebars or dust",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "app",
+    "router"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "author": "Dan Zaharia",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.1.0",
+    "yosay": "^1.0.5"
+  }
+}

@@ -1,0 +1,3 @@
+<main>
+	<%= appName %> app is ready!
+</main>
