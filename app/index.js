@@ -61,7 +61,7 @@ module.exports = generators.Base.extend({
 			{ "src": "_package.json", "dest": "package.json" },
 			{ "src": "_nodemon.json", "dest": "nodemon.json" },
 			{ "src": "_gulpfile.js", "dest": "gulpfile.js" },
-			{ "src": "_readme.md", "dest": "readme.md"},
+			{ "src": "_readme.md", "dest": "README.md"},
 			{ "src": "_main.scss", "dest": "scss/main.scss" },
 			{ "src": "_colors.scss", "dest": "scss/scaffolding/colors.scss" },
 			{ "src": "_type.scss", "dest": "scss/scaffolding/type.scss" },
