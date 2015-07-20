@@ -59,6 +59,7 @@ module.exports = generators.Base.extend({
 		var templates = [
 			{ "src": "_app.js", "dest": "app.js" },
 			{ "src": "_package.json", "dest": "package.json" },
+			{ "src": "_nodemon.json", "dest": "nodemon.json" },
 			{ "src": "_gulpfile.js", "dest": "gulpfile.js" },
 			{ "src": "_readme.md", "dest": "readme.md"},
 			{ "src": "_main.scss", "dest": "scss/main.scss" },
