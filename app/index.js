@@ -131,11 +131,15 @@ module.exports = generators.Base.extend({
 			if (this.templateOption === 'dust') {
 				this.npmInstall(['consolidate'], { 'save': true });
 			}
-			// this.spawnCommand('gulp', ['sass']);
 		}
 	},
 	end: function () {
-		// this.spawnCommand('gulp', ['sass']);
-		this.log(yosay('All set. To run your app, just execute\n' + chalk.red('\'npm run dev\'') + '\nHappy coding!'));
+		if (this.autoInstall) {
+			this.log(yosay('All set.' + '\nHappy coding!'));
+			this.spawnCommand('npm', ['run', 'dev']);
+		}
+		else {
+			this.log(yosay('All set! To run your app, just execute\n' + chalk.red('$ npm install') + '\n' + chalk.red('$ npm run dev')));
+		}
 	}
 });
