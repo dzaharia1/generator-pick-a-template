@@ -66,7 +66,8 @@ module.exports = generators.Base.extend({
 			{ "src": "_colors.scss", "dest": "scss/scaffolding/colors.scss" },
 			{ "src": "_type.scss", "dest": "scss/scaffolding/type.scss" },
 			{ "src": "_grids.scss", "dest": "scss/scaffolding/grids.scss" },
-			{ "src": "_ui.js", "dest": "public/scripts/ui.js" }
+			{ "src": "_ui.js", "dest": "public/scripts/ui.js" },
+			{ "src": "_gitignore", "dest": ".gitignore" }
 		];
 
 		var directories = [
