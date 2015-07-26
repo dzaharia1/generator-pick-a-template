@@ -29,10 +29,7 @@ app.port = app.set('port', process.env.PORT || localport);
 
 
 app.get('/', function(req, res) {
-	viewData = {
-		testString: 'Hello World!'
-	}
-	res.render('index', { data: viewData });
+	res.render('index', { data: 'test data' });
 });
 
 var server = app.listen(app.get('port'), function() {
