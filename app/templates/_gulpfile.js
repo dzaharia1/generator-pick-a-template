@@ -10,7 +10,7 @@ var SOURCE = {
 	scss: 'scss/**/*.scss',
 	css: 'public/css',
 	<%= templateExtensions[templateOption] %>: 'views/**/*.<%= templateExtensions[templateOption] %>',
-	js: ['/*.js', 'routes/**/*.js', 'public/js/*.js'],
+	js: ['/*.js', 'public/scripts/*.js'],
 	images: 'public/images/icon-library/svg/*'
 };
 
