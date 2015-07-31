@@ -3,9 +3,7 @@ var path = require('path');
 <% if (templateOption === 'dust') { %>
 var cons = require('consolidate');
 <% } %>
-// <% if (templateOption === 'handlebars') { %>
 var <%= templateOption %> = require('<%= templateOptionList[templateOption] %>');
-// <% } %>
 
 var app = express();
 
@@ -20,6 +18,9 @@ app.set('view engine', 'dust');
 <% } else if (templateOption === 'handlebars') { %>
 app.engine('hbs', handlebars({ extname: 'hbs', defaultLayout: 'layout.hbs' }));
 app.set('view engine', 'hbs');
+<% } else if (templateOption === 'ejs') { %>
+// app.engine('ejs', handlebars({ extname: 'ejs', defaultLayout: 'layout.ejs' }));
+app.set('view engine', 'ejs');
 <% } %>
 
 

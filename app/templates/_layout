@@ -14,5 +14,8 @@
 	{+ content}
 	{/ content}
 	<% } %>
+	<% if (templateOption === 'ejs') { %>
+	<% ejsOpen %> body <% ejsClose %>
+	<% } %>
 </body>
 </html>
