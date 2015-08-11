@@ -92,7 +92,7 @@ module.exports = generators.Base.extend({
 		for (i = 0; i < templates.length; i ++) {
 			var thisTemplate = templates[i];
 			this.fs.copyTpl(
-				this.templatePath(thisTemplate.src),_
+				this.templatePath(thisTemplate.src),
 				this.destinationPath(thisTemplate.dest),
 				templateData
 			);
