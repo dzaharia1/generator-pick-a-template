@@ -15,9 +15,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 <% if (templateOption === 'dust' || templateOption === 'ejs') { %>
 app.engine('<%= templateOption %>', cons.<%= templateOption %>);
 app.set('view engine', '<%= templateOption %>');
-<% } else if (templateOption === 'hbs') { %>
+<% } else { %>
 app.engine('hbs', handlebars({ extname: 'hbs', defaultLayout: 'layout.hbs' }));
-app.set('view engine', 'hbs');
+app.set('view engine', 'hbs')
 <% } %>
 
 app.host = app.set('host', process.env.HOST || localhost);
