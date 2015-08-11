@@ -1,6 +1,6 @@
 var express = require('express');
 var path = require('path');
-<% if (templateOption === 'dust') { %>
+<% if (templateOption === 'dust' || templateOption === 'ejs') { %>
 var cons = require('consolidate');
 <% } %>
 var <%= templateOption %> = require('<%= templateOptionList[templateOption] %>');
@@ -12,22 +12,16 @@ var localhost = 'http://localhost';
 
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-<% if (templateOption === 'dust') {  %>
-app.engine('dust', cons.dust);
-app.set('view engine', 'dust');
-<% } else if (templateOption === 'handlebars') { %>
+<% if (templateOption === 'dust' || templateOption === 'ejs') { %>
+app.engine('<%= templateOption %>', cons.<%= templateOption %>);
+app.set('view engine', '<%= templateOption %>');
+<% } else if (templateOption === 'hbs') { %>
 app.engine('hbs', handlebars({ extname: 'hbs', defaultLayout: 'layout.hbs' }));
 app.set('view engine', 'hbs');
-<% } else if (templateOption === 'ejs') { %>
-// app.engine('ejs', handlebars({ extname: 'ejs', defaultLayout: 'layout.ejs' }));
-app.set('view engine', 'ejs');
 <% } %>
-
 
 app.host = app.set('host', process.env.HOST || localhost);
 app.port = app.set('port', process.env.PORT || localport);
-
-
 
 app.get('/', function(req, res) {
 	res.render('index', { data: 'test data' });
