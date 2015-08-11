@@ -32,7 +32,8 @@ var AUTOPREFIXER_BROWSERS = [
 
 gulp.task('browser-sync', function(){
 	browserSync({
-		proxy: 'localhost:3333'
+		proxy: 'localhost:3333',
+		notify: false
 	});
 });
 
