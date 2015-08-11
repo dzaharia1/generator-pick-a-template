@@ -61,9 +61,9 @@ module.exports = generators.Base.extend({
 			{ "src": "_gulpfile.js", "dest": "gulpfile.js" },
 			{ "src": "_readme.md", "dest": "README.md"},
 			{ "src": "_main.scss", "dest": "scss/main.scss" },
-			{ "src": "_colors.scss", "dest": "scss/scaffolding/colors.scss" },
-			{ "src": "_type.scss", "dest": "scss/scaffolding/type.scss" },
-			{ "src": "_grids.scss", "dest": "scss/scaffolding/grids.scss" },
+			{ "src": "_colors.scss", "dest": "scss/scaffolding/_colors.scss" },
+			{ "src": "_type.scss", "dest": "scss/scaffolding/_type.scss" },
+			{ "src": "_grids.scss", "dest": "scss/scaffolding/_grids.scss" },
 			{ "src": "_ui.js", "dest": "public/scripts/ui.js" },
 			{ "src": "_gitignore", "dest": ".gitignore" }
 		];
@@ -92,7 +92,7 @@ module.exports = generators.Base.extend({
 		for (i = 0; i < templates.length; i ++) {
 			var thisTemplate = templates[i];
 			this.fs.copyTpl(
-				this.templatePath(thisTemplate.src),
+				this.templatePath(thisTemplate.src),_
 				this.destinationPath(thisTemplate.dest),
 				templateData
 			);
@@ -127,7 +127,7 @@ module.exports = generators.Base.extend({
 		// this.spawnCommand('mkdir', [this.appname]);
 		this.log(yosay('Done scaffolding. Let\'s set up dependencies'));
 		this.npmInstall(['gulp', 'gulp-sass', 'gulp-autoprefixer', 'gulp-plumber', 'gulp-scss-lint', 'browser-sync'], { 'saveDev': true });
-		this.npmInstall(['express', this.templateOptionList[this.templateOption]], { 'save': true });
+		this.npmInstall(['express', 'consolidate', this.templateOptionList[this.templateOption]], { 'save': true });
 
 		if (this.templateOption === 'dust') {
 			this.npmInstall(['consolidate'], { 'save': true });
