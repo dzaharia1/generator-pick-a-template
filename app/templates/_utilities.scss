@@ -1,0 +1,36 @@
+// uniformly add alpha to a color
+@function transparentize ($color, $transparency: .7) {
+  @return rgba($color, $transparency);
+}
+
+// choose the correct color (white/ $type-dark) for type depending on the background color
+@function setContrastyForeground ($background-color) {
+  @return if(lightness($background-color) > 50%, $type-dark, white);
+}
+
+// wrap the min-width breakpoint definition
+@mixin breakpoint($size) {
+	@media screen and (min-width: $size) {
+		@content;
+	}
+}
+
+// create placeholders for all of the flex layouts I need:
+// %horizontal-start
+// %horizontal-center
+// %horizontal-end
+// %vertical-start
+// %vertical-center
+// %vertical-end
+$flex-directions: ("horizontal": row, "vertical": column);
+$flex-alignments: ("start": flex-start, "center": center, "end": flex-end);
+
+@each $direction-name, $direction-value in $flex-directions {
+  @each $alignment-name, $alignment-value in $flex-alignments {
+    %#{$direction-name}-#{$alignment-name} {
+      display: flex;
+      flex-direction: $direction-value;
+      align-items: $alignment-value;
+    }
+  }
+}
