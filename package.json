@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "chalk": "^1.1.0",
+    "yeoman-generator": "^0.22.5",
     "yosay": "^1.0.5"
   }
 }
