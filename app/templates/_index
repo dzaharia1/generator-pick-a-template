@@ -1,3 +1,9 @@
+<% if (templateOption === 'ejs') { %>
+	<%- ejsOpen %>include partials/_header<%- ejsClose %>
+<% } %>
 <main>
 	<%= appName %> app is ready!
 </main>
+<% if (templateOption === 'ejs') { %>
+	<%- ejsOpen %>include partials/_footer<%- ejsClose %>
+<% } %>

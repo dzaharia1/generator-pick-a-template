@@ -27,6 +27,12 @@ module.exports = generators.Base.extend({
 				message: 'Which templating language do you want to use?',
 				choices: ['handlebars', 'dust', 'ejs'],
 				default: 'handlebars'
+			},
+			{
+				type: 'confirm',
+				name: 'autoNpmInstall',
+				message: 'Automatically install dependencies after scaffolding?',
+				default: true
 			}
 		];
 		this.prompt(
@@ -40,7 +46,8 @@ module.exports = generators.Base.extend({
 				'handlebars': 'express-handlebars',
 				'dust': 'dustjs-linkedin',
 				'ejs': 'ejs'
-			}
+			};
+			this.autoNpmInstall = answers.autoNpmInstall;
 			done();
 		}.bind(this));
 	},
@@ -55,7 +62,7 @@ module.exports = generators.Base.extend({
 		}
 
 		var templates = [
-			{ "src": "_app.js", "dest": "app.js" },
+			{ "src": "_app.js", "dest": this.serverFileName },
 			{ "src": "_package.json", "dest": "package.json" },
 			{ "src": "_nodemon.json", "dest": "nodemon.json" },
 			{ "src": "_gulpfile.js", "dest": "gulpfile.js" },
@@ -89,6 +96,10 @@ module.exports = generators.Base.extend({
 
 		this.log(yosay('Alright, let\'s lay down the files!'));
 
+		for (i = 0; i < directories.length; i ++) {
+			this.mkdir(directories[i])
+		}
+
 		for (i = 0; i < templates.length; i ++) {
 			var thisTemplate = templates[i];
 			this.fs.copyTpl(
@@ -103,11 +114,21 @@ module.exports = generators.Base.extend({
 				this.destinationPath('views/layouts/layout.' + templateExtensions[this.templateOption]),
 				templateData
 			);
-		}
-		else if (this.templateOption === 'dust' || this.templateOption === 'ejs') {
+		} else if (this.templateOption === 'dust') {
 			this.fs.copyTpl(
 				this.templatePath('_layout'),
 				this.destinationPath('views/layout.' + templateExtensions[this.templateOption]),
+				templateData
+			);
+		} else if (this.templateOption === 'ejs') {
+			this.fs.copyTpl(
+				this.templatePath('_header.ejs'),
+				this.destinationPath('views/partials/_header.ejs'),
+				templateData
+			);
+			this.fs.copyTpl(
+				this.templatePath('_footer.ejs'),
+				this.destinationPath('views/partials/_footer.ejs'),
 				templateData
 			);
 		}
@@ -118,24 +139,28 @@ module.exports = generators.Base.extend({
 			templateData
 		);
 
-		for (i = 0; i < directories.length; i ++) {
-			this.mkdir(directories[i])
-		}
 	},
 
 	install: function() {
 		// this.spawnCommand('mkdir', [this.appname]);
-		this.log(yosay('Done scaffolding. Let\'s set up dependencies'));
-		this.npmInstall(['gulp', 'gulp-sass', 'gulp-autoprefixer', 'gulp-plumber', 'gulp-scss-lint', 'browser-sync'], { 'saveDev': true });
-		this.npmInstall(['express', 'consolidate', this.templateOptionList[this.templateOption]], { 'save': true });
+		if (this.autoNpmInstall) {
+			this.log(yosay('Done scaffolding. Let\'s set up dependencies'));
+			this.npmInstall(['gulp', 'gulp-sass', 'gulp-autoprefixer', 'gulp-plumber', 'gulp-scss-lint', 'browser-sync'], { 'saveDev': true });
+			this.npmInstall(['express', 'consolidate', this.templateOptionList[this.templateOption]], { 'save': true });
 
-		if (this.templateOption === 'dust') {
-			this.npmInstall(['consolidate'], { 'save': true });
+			if (this.templateOption === 'dust') {
+				this.npmInstall(['consolidate'], { 'save': true });
+			}
+		} else {
+			this.log(yosay('Done scaffolding. To install your dependencies, simply run ' + chalk.red('npm install') + '.'));
 		}
 	},
 
 	end: function () {
 		this.log(yosay('All set.' + '\nHappy coding!'));
-		this.spawnCommand('npm', ['run', 'dev']);
+
+		if (this.autoNpmInstall) {
+			this.spawnCommand('npm', ['run', 'dev']);
+		}
 	}
 });
