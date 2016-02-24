@@ -20,11 +20,11 @@ This generator currently creates a harp project using EJS, vanilla Javascript an
 
 You will need to have NPM installed. Get it at http://nodejs.org.
 
-## Installing Prerequisites: Node, Gulp and Harp
+## Installing Prerequisites: Node, Gulp and Nodemon
 
 Once you have node installed, use npm to install all prerequisites
 
-`$ npm install -g yo gulp harp`
+`$ npm install -g yo gulp nodemon`
 
 if you get an EACCESS error, run this command with sudo
 
