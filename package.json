@@ -1,6 +1,6 @@
 {
   "name": "generator-pick-a-template",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Scaffold a basic express app with a built in sass build task and your choice of templating with ejs, handlebars, dust or jade",
   "main": "index.js",
   "scripts": {
