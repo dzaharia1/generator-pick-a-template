@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "homepage": "https://github.com/dzaharia1/generator-nodeapp",
-  "bugs": "https://github.com/dzaharia1/generator-nodeapp/issues",
+  "homepage": "https://github.com/dzaharia1/generator-pick-a-template",
+  "bugs": "https://github.com/dzaharia1/generator-pick-a-template/issues",
   "files": [
     "app",
     "router"
