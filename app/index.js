@@ -96,6 +96,10 @@ module.exports = generators.Base.extend({
 
 		this.log(yosay('Alright, let\'s lay down the files!'));
 
+		for (i = 0; i < directories.length; i ++) {
+			this.mkdir(directories[i])
+		}
+
 		for (i = 0; i < templates.length; i ++) {
 			var thisTemplate = templates[i];
 			this.fs.copyTpl(
@@ -125,9 +129,6 @@ module.exports = generators.Base.extend({
 			templateData
 		);
 
-		for (i = 0; i < directories.length; i ++) {
-			this.mkdir(directories[i])
-		}
 	},
 
 	install: function() {
