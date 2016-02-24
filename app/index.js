@@ -114,11 +114,21 @@ module.exports = generators.Base.extend({
 				this.destinationPath('views/layouts/layout.' + templateExtensions[this.templateOption]),
 				templateData
 			);
-		}
-		else if (this.templateOption === 'dust' || this.templateOption === 'ejs') {
+		} else if (this.templateOption === 'dust') {
 			this.fs.copyTpl(
 				this.templatePath('_layout'),
 				this.destinationPath('views/layout.' + templateExtensions[this.templateOption]),
+				templateData
+			);
+		} else if (this.templateOption === 'ejs') {
+			this.fs.copyTpl(
+				this.templatePath('_header.ejs'),
+				this.destinationPath('views/partials/_header.ejs'),
+				templateData
+			);
+			this.fs.copyTpl(
+				this.templatePath('_footer.ejs'),
+				this.destinationPath('views/partials/_footer.ejs'),
 				templateData
 			);
 		}
