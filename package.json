@@ -1,20 +1,31 @@
 {
-  "name": "generator-nodeapp",
+  "name": "generator-pick-a-template",
   "version": "1.0.0",
-  "description": "Scaffold a basic prototype with either handlebars or dust",
+  "description": "Scaffold a basic express app with a built in sass build task and your choice of templating with ejs, handlebars, dust or jade",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "https://github.com/dzaharia1/generator-nodeapp",
+  "bugs": "https://github.com/dzaharia1/generator-nodeapp/issues",
   "files": [
     "app",
     "router"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "express",
+    "ejs",
+    "handlebars",
+    "dust",
+    "jade"
   ],
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
   "author": "Dan Zaharia",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.0",
     "yeoman-generator": "^0.22.5",

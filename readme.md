@@ -8,5 +8,5 @@
 - `$ npm install`
 - `$ npm link`
 - create a directory anywhere on your filesystem where you want to build your node app and `cd` into it
-- run `$ yo nodeapp` and follow the prompts
+- run `$ yo pick-a-template` and follow the prompts
 - `$ npm run dev` to start your node app
