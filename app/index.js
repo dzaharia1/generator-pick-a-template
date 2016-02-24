@@ -5,7 +5,7 @@ var chalk = require('chalk');
 module.exports = generators.Base.extend({
 	prompting: function () {
 		var done = this.async();
-		this.log(yosay('Welcome to the ' + chalk.red('Pick-A-Template') + ' Yeoman generator! Where you can scaffold a Node.js + Express app with any templating language of your choosing.'));
+		this.log(yosay('Welcome to the ' + chalk.red('Pick-A-Template') + ' Yeoman generator! Where you can scaffold a Node.js + Express app with your choice of templating language.'));
 		var prompts = [
 			{
 				name: 'appName',
