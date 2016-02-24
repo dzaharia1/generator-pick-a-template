@@ -8,6 +8,10 @@
   },
   "homepage": "https://github.com/dzaharia1/generator-pick-a-template",
   "bugs": "https://github.com/dzaharia1/generator-pick-a-template/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dzaharia1/generator-pick-a-template.git"
+  },
   "files": [
     "app",
     "router"
