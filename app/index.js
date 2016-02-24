@@ -27,6 +27,12 @@ module.exports = generators.Base.extend({
 				message: 'Which templating language do you want to use?',
 				choices: ['handlebars', 'dust', 'ejs'],
 				default: 'handlebars'
+			},
+			{
+				type: 'confirm',
+				name: 'autoNpmInstall',
+				message: 'Automatically install dependencies after scaffolding?',
+				default: true
 			}
 		];
 		this.prompt(
@@ -40,7 +46,8 @@ module.exports = generators.Base.extend({
 				'handlebars': 'express-handlebars',
 				'dust': 'dustjs-linkedin',
 				'ejs': 'ejs'
-			}
+			};
+			this.autoNpmInstall = answers.autoNpmInstall;
 			done();
 		}.bind(this));
 	},
@@ -125,17 +132,24 @@ module.exports = generators.Base.extend({
 
 	install: function() {
 		// this.spawnCommand('mkdir', [this.appname]);
-		this.log(yosay('Done scaffolding. Let\'s set up dependencies'));
-		this.npmInstall(['gulp', 'gulp-sass', 'gulp-autoprefixer', 'gulp-plumber', 'gulp-scss-lint', 'browser-sync'], { 'saveDev': true });
-		this.npmInstall(['express', 'consolidate', this.templateOptionList[this.templateOption]], { 'save': true });
+		if (this.autoNpmInstall) {
+			this.log(yosay('Done scaffolding. Let\'s set up dependencies'));
+			this.npmInstall(['gulp', 'gulp-sass', 'gulp-autoprefixer', 'gulp-plumber', 'gulp-scss-lint', 'browser-sync'], { 'saveDev': true });
+			this.npmInstall(['express', 'consolidate', this.templateOptionList[this.templateOption]], { 'save': true });
 
-		if (this.templateOption === 'dust') {
-			this.npmInstall(['consolidate'], { 'save': true });
+			if (this.templateOption === 'dust') {
+				this.npmInstall(['consolidate'], { 'save': true });
+			}
+		} else {
+			this.log(yosay('Done scaffolding. To install your dependencies, simply run ' + chalk.red('npm install') + '.'));
 		}
 	},
 
 	end: function () {
 		this.log(yosay('All set.' + '\nHappy coding!'));
-		this.spawnCommand('npm', ['run', 'dev']);
+
+		if (this.autoNpmInstall) {
+			this.spawnCommand('npm', ['run', 'dev']);
+		}
 	}
 });
